@@ -7,6 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyFramework", "YkeyFramew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyModConfigurationLite", "YkeyModConfigurationLite\YkeyModConfigurationLite.csproj", "{B722E882-75B3-4E8A-BE2B-1C414E34714C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyCraftIntegration", "YkeyCraftIntegration\YkeyCraftIntegration.csproj", "{8C176B38-DDFE-4A15-8FED-B6F28FD58B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyDebugExtraInfo", "YkeyDebugExtraInfo\YkeyDebugExtraInfo.csproj", "{0E9976BC-B5DE-4F43-8B21-FB25CBAFD333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyMultipleDetector", "YkeyMultipleDetector\YkeyMultipleDetector.csproj", "{F848756D-89C1-4617-AA1D-FAFEA59BA816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeySearchExtension", "YkeySearchExtension\YkeySearchExtension.csproj", "{9EF468BE-2304-4B86-A3CC-BA459AB43480}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyStatusBarExtra", "YkeyStatusBarExtra\YkeyStatusBarExtra.csproj", "{DBE6FF73-97F3-468A-8898-7107018FE820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyTeleporterFix", "YkeyTeleporterFix\YkeyTeleporterFix.csproj", "{65C68B14-A514-4270-9D62-C573562CDC96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +33,30 @@ Global
 		{B722E882-75B3-4E8A-BE2B-1C414E34714C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B722E882-75B3-4E8A-BE2B-1C414E34714C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B722E882-75B3-4E8A-BE2B-1C414E34714C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C176B38-DDFE-4A15-8FED-B6F28FD58B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C176B38-DDFE-4A15-8FED-B6F28FD58B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C176B38-DDFE-4A15-8FED-B6F28FD58B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C176B38-DDFE-4A15-8FED-B6F28FD58B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9976BC-B5DE-4F43-8B21-FB25CBAFD333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9976BC-B5DE-4F43-8B21-FB25CBAFD333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9976BC-B5DE-4F43-8B21-FB25CBAFD333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9976BC-B5DE-4F43-8B21-FB25CBAFD333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F848756D-89C1-4617-AA1D-FAFEA59BA816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F848756D-89C1-4617-AA1D-FAFEA59BA816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F848756D-89C1-4617-AA1D-FAFEA59BA816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F848756D-89C1-4617-AA1D-FAFEA59BA816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF468BE-2304-4B86-A3CC-BA459AB43480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF468BE-2304-4B86-A3CC-BA459AB43480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF468BE-2304-4B86-A3CC-BA459AB43480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF468BE-2304-4B86-A3CC-BA459AB43480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE6FF73-97F3-468A-8898-7107018FE820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE6FF73-97F3-468A-8898-7107018FE820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE6FF73-97F3-468A-8898-7107018FE820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE6FF73-97F3-468A-8898-7107018FE820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C68B14-A514-4270-9D62-C573562CDC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C68B14-A514-4270-9D62-C573562CDC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C68B14-A514-4270-9D62-C573562CDC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C68B14-A514-4270-9D62-C573562CDC96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
