@@ -29,6 +29,8 @@ Elinのプログラム解析やそのほかのModなど様々なものを参考�
   https://ylvapedia.wiki/wiki/
 - KickstarterのElin紹介ページ  
   https://www.kickstarter.com/projects/noacat/elin/
+- YK Framework（限定公開）  
+  https://steamcommunity.com/sharedfiles/filedetails/?id=3379866147
 
 # 免責
 - これは技術発展を目的とした限定公開です。利用は自己責任の範囲でお願いします。
