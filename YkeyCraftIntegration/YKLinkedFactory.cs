@@ -24,7 +24,7 @@ namespace YkeyCraftIntegration
             {
                 foreach (var t in PatchLayerCraft.factories)
                 {
-                    if (r.idFactory == t.id || r.idFactory == "self")
+                    if (t.trait is TraitFactory f && (f.Contains(r) || r.idFactory == "self"))
                     {
                         return true;
                     }
