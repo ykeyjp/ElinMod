@@ -100,21 +100,16 @@ public class YKModConfigWindow : BuildUI<YKModConfigWindow.Args>
         }
         else if (config is ConfigEntry<int> cint)
         {
-            UIHost<UIInputText>? input = null;
-            input = row.InputText(cint.Value.ToString(), (i) =>
+            row.InputText(cint.Value.ToString(), (i) =>
             {
-                if (input != null)
-                {
-                    cint.Value = input.Value.Host.Num;
-                }
+                cint.Value = i.Num;
             });
         }
         else if (config is ConfigEntry<float> cfloat)
         {
-            UIHost<UIInputText>? input = null;
-            input = row.InputText(cfloat.Value.ToString(), (i) =>
+            row.InputText(cfloat.Value.ToString(), (i) =>
             {
-                if (input != null && float.TryParse(input.Value.Host.Text, out var f))
+                if (float.TryParse(i.Text, out var f))
                 {
                     cfloat.Value = f;
                 }
@@ -122,13 +117,9 @@ public class YKModConfigWindow : BuildUI<YKModConfigWindow.Args>
         }
         else if (config is ConfigEntry<string> cstr)
         {
-            UIHost<UIInputText>? input = null;
-            input = row.InputText(cstr.Value, (i) =>
+            row.InputText(cstr.Value, (i) =>
             {
-                if (input != null)
-                {
-                    cstr.Value = input.Value.Host.Text;
-                }
+                cstr.Value = i.Text;
             }, 200);
         }
         else

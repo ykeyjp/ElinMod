@@ -338,11 +338,11 @@ public abstract class LayoutBase : IDisposable, IUIHost<LayoutBase>, IUIHost
         return this.AddElement(new UIHost<UIItem>(this, uiitem, rectt, rect));
     }
 
-    public UIHost<UIInputText> InputText(string? value = null, Action<int>? onchange = null, float width = 90f)
+    public UIHost<UIInputText> InputText(string? value = null, Action<UIInputText>? onchange = null, float width = 90f)
     {
         var uiinput = YUI.MakeInputField();
         if (value != null) uiinput.Text = value;
-        if (onchange != null) uiinput.onValueChanged = onchange;
+        if (onchange != null) uiinput.onValueChanged = (i) => { onchange(uiinput); };
         uiinput.max = int.MaxValue;
 
         var num = this.GetElementSize(width, -15f) + this.Space;
