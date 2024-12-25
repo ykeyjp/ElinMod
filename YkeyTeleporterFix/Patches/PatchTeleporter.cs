@@ -69,22 +69,30 @@ namespace YkeyTeleporterFix.Patches
 
         public static List<Zone> GetTeleportZones(TraitTeleporter t)
         {
-            string id = t.id;
-            int uid = t.owner.uid;
+            var id = t.id;
+            var uid = t.owner.uid;
             if (id.IsEmpty())
             {
                 return [];
             }
-            List<Zone> list = new List<Zone>();
+            var list = new List<Zone>();
             foreach (KeyValuePair<int, TeleportManager.Item> keyValuePair in EClass.game.teleports.items)
             {
                 if (keyValuePair.Key != uid && keyValuePair.Value.id == id)
                 {
-                    Zone zone = EClass.game.spatials.Find(keyValuePair.Value.uidZone);
+                    var zone = EClass.game.spatials.Find(keyValuePair.Value.uidZone);
                     if (zone != null && zone != EClass._zone && !(zone is Zone_Tent))
                     {
                         list.Add(zone);
                     }
+                }
+            }
+            if (ModYkey.IsNamedSort?.Value ?? false)
+            {
+                list = [.. list.OrderBy(x => x.Name)];
+                if (ModYkey.IsSortDesc?.Value ?? false)
+                {
+                    list.Reverse();
                 }
             }
             return list;
