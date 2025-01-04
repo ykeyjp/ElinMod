@@ -7,22 +7,22 @@ namespace YkeyCraftIntegration.Patches
     public class PatchLayerCraft
     {
         public static List<Thing> factories = [];
-        public static bool isIntegration = false;
+        public static bool IsIntegration = false;
 
         [HarmonyPrefix, HarmonyPatch(typeof(LayerCraft), nameof(LayerCraft.SetFactory))]
         public static void LayerCraft_SetFactory_Prefix(LayerCraft __instance, ref Thing t)
         {
             if (t != null)
             {
-                isIntegration = false;
+                IsIntegration = false;
                 return;
             }
-            isIntegration = true;
+            IsIntegration = true;
 
             factories = EClass._map.things.Where(t2 => t2.trait is TraitFactory).ToList();
             if (factories.Count == 0)
             {
-                isIntegration = false;
+                IsIntegration = false;
                 return;
             }
 
@@ -34,7 +34,7 @@ namespace YkeyCraftIntegration.Patches
 
                 var vertical = rectTab.gameObject.GetComponent<VerticalLayoutGroup>();
                 vertical.SetActive(false);
-                GameObject.DestroyImmediate(vertical);
+                UnityEngine.Object.DestroyImmediate(vertical);
 
                 var grid = rectTab.gameObject.AddComponent<GridLayoutGroup>();
                 grid.startAxis = GridLayoutGroup.Axis.Vertical;
@@ -50,7 +50,6 @@ namespace YkeyCraftIntegration.Patches
             }
             catch (Exception e)
             {
-
                 Debug.Log("[YK CI] " + e.Message);
             }
         }
@@ -59,15 +58,17 @@ namespace YkeyCraftIntegration.Patches
         public static void LayerCraft_OnClickCraft_Prefix(out Thing __state, LayerCraft __instance)
         {
             __state = __instance.factory;
-            if (!isIntegration)
+            if (!IsIntegration)
             {
                 return;
             }
 
-            foreach (var t in PatchLayerCraft.factories)
+            foreach (var t in factories)
             {
-                if (__instance.recipe.source.idFactory == t.id)
+                if (t.trait is TraitFactory f && f.Contains(__instance.recipe.source))
                 {
+                    Debug.Log("use factory: " + t.GetName(NameStyle.Full));
+                    t.c_charges = f.FuelCost * __instance.inputNum.Num;
                     __instance.factory = t;
                     return;
                 }
@@ -79,7 +80,7 @@ namespace YkeyCraftIntegration.Patches
         [HarmonyPostfix, HarmonyPatch(typeof(LayerCraft), nameof(LayerCraft.OnClickCraft))]
         public static void LayerCraft_OnClickCraft_Postfix(Thing __state, LayerCraft __instance)
         {
-            if (!isIntegration)
+            if (!IsIntegration)
             {
                 return;
             }
