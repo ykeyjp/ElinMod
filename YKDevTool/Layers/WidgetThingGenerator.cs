@@ -49,20 +49,7 @@ public class WidgetThingGenerator
             {
                 callback.onClick += delegate (Recipe a, ButtonGrid b)
                 {
-                    Thing thing;
-                    var type = a.source.type;
-                    if (type == "Block")
-                    {
-                        thing = ThingGen.CreateBlock(a.tileRow.id, a.GetMainMaterial().id);
-                    }
-                    else if (type != "Obj")
-                    {
-                        thing = ThingGen.CreateFloor(a.tileRow.id, a.GetMainMaterial().id, a.source.isBridge);
-                    }
-                    else
-                    {
-                        thing = ThingGen.CreateObj(a.tileRow.id, a.GetMainMaterial().id);
-                    }
+                    var thing = a.Craft(BlessedState.Normal);
                     if (thing != null)
                     {
                         thing.ChangeMaterial(material.value == 0 ? a.DefaultMaterial : EClass.sources.materials.rows[material.value - 1]);
