@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyStatusBarExtra", "YkeyS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YkeyTeleporterFix", "YkeyTeleporterFix\YkeyTeleporterFix.csproj", "{65C68B14-A514-4270-9D62-C573562CDC96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YKFramework", "YKFramework\YKFramework.csproj", "{C73D64B1-E070-421D-903A-CC5B2A7044E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YKDevTool", "YKDevTool\YKDevTool.csproj", "{AD7931EE-6F47-43AB-BACB-6437377765CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{65C68B14-A514-4270-9D62-C573562CDC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C68B14-A514-4270-9D62-C573562CDC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C68B14-A514-4270-9D62-C573562CDC96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C73D64B1-E070-421D-903A-CC5B2A7044E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C73D64B1-E070-421D-903A-CC5B2A7044E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C73D64B1-E070-421D-903A-CC5B2A7044E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C73D64B1-E070-421D-903A-CC5B2A7044E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD7931EE-6F47-43AB-BACB-6437377765CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7931EE-6F47-43AB-BACB-6437377765CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7931EE-6F47-43AB-BACB-6437377765CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7931EE-6F47-43AB-BACB-6437377765CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
