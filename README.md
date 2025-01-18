@@ -9,11 +9,7 @@ Elinのプログラム解析やそのほかのModなど様々なものを参考�
 
 少しでもMod開発の参考となり、ElinのMod界隈がより活発になれば幸いです。
 
-# 注意、TODO
-- 現在はソースコードのみを公開していますが、折を見て[ドキュメント](https://ykeyjp.github.io/ElinMod.Doc/)の整備も進めていきます。
-- YkeyFramework（Mod:YK Framework） に関してはSteamワークショップにて限定公開を行っています。こちらはタイミングを見て公開します。
-- YkeyModConfigurationLite（Mod:YK Mod Configuration Lite）はFrameworkの活用サンプルです。特に綿密な動作検証を行っていないので参考程度に見てください。
-- YK Testing Tool などの公開済みのModのソースコードも将来的には公開する予定です。
+[ドキュメント](https://ykeyjp.github.io/ElinMod.Doc/)
 
 このソースコードのソリューション・プロジェクト構成のままビルドを実行しないことをお勧めします。  
 個人的な開発環境で使用しているソースコードのため、  
