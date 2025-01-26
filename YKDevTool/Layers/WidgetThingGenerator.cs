@@ -52,7 +52,7 @@ public class WidgetThingGenerator
                     var thing = a.Craft(BlessedState.Normal);
                     if (thing != null)
                     {
-                        thing.ChangeMaterial(material.value == 0 ? a.DefaultMaterial : EClass.sources.materials.rows[material.value - 1]);
+                        thing.ChangeMaterial(material.value == 0 ? a.DefaultMaterial : EClass.sources.materials.rows[material.value - 1], false);
                         thing.ChangeRarity((Rarity)(quality.value - 1));
                         thing.SetBlessedState((BlessedState)(bleesed.value - 2));
                         thing.SetNum(Math.Max(quantity.Num, 1));
