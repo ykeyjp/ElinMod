@@ -149,52 +149,52 @@ public class ThingEnchantTab : YKLayout<Thing>
             Header("主能力"._("Main"));
             _attributeElementList = Create<ElementSingleList>();
             _attributeElementList.Container = thing.elements;
-            _attributeElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value is AttbMain).Select(x => x.Value).ToList();
+            _attributeElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "attribute").Select(x => x.Value)];
 
             Header("スキル"._("Skill"));
             _skillElementList = Create<ElementSingleList>();
             _skillElementList.Container = thing.elements;
-            _skillElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "skill").Select(x => x.Value).ToList();
+            _skillElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "skill").Select(x => x.Value)];
 
             Header("エンチャント"._("Enchant"));
             _enchantElementList = Create<ElementSingleList>();
             _enchantElementList.Container = thing.elements;
-            _enchantElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "enchant").Select(x => x.Value).ToList();
+            _enchantElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "enchant").Select(x => x.Value)];
 
             Header("耐性"._("Resist"));
             _resistElementList = Create<ElementSingleList>();
             _resistElementList.Container = thing.elements;
-            _resistElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "resist").Select(x => x.Value).ToList();
+            _resistElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "resist").Select(x => x.Value)];
 
             Header("魔法"._("Spell"));
             _spellElementList = Create<ElementSingleList>();
             _spellElementList.Container = thing.elements;
-            _spellElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value is Spell).Select(x => x.Value).ToList();
+            _spellElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value is Spell).Select(x => x.Value)];
 
             Header("その他"._("Others"));
             _otherElementList = Create<ElementSingleList>();
             _otherElementList.Container = thing.elements;
-            _otherElementList.OnList = (m) => thing.elements.dict.Where(e => (e.Value.source.group == "ELEMENT" || e.Value.source.group == "SKILL") && e.Value.source.category == "").Select(x => x.Value).ToList();
+            _otherElementList.OnList = (m) => [.. thing.elements.dict.Where(e => (e.Value.source.group == "ELEMENT" || e.Value.source.group == "SKILL") && e.Value.source.category == "").Select(x => x.Value)];
 
             Header("フィート"._("Feat"));
             _featElementList = Create<ElementSingleList>();
             _featElementList.Container = thing.elements;
-            _featElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "feat").Select(x => x.Value).ToList();
+            _featElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "feat").Select(x => x.Value)];
 
             Header("スロット"._("Slot"));
             _slotElementList = Create<ElementSingleList>();
             _slotElementList.Container = thing.elements;
-            _slotElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "slot").Select(x => x.Value).ToList();
+            _slotElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "slot").Select(x => x.Value)];
 
             Header("変異"._("Mutation"));
             _mutationElementList = Create<ElementSingleList>();
             _mutationElementList.Container = thing.elements;
-            _mutationElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "mutation").Select(x => x.Value).ToList();
+            _mutationElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "mutation").Select(x => x.Value)];
 
             Header("エーテル"._("Ether"));
             _etherElementList = Create<ElementSingleList>();
             _etherElementList.Container = thing.elements;
-            _etherElementList.OnList = (m) => thing.elements.dict.Where(e => e.Value.source.category == "ether").Select(x => x.Value).ToList();
+            _etherElementList.OnList = (m) => [.. thing.elements.dict.Where(e => e.Value.source.category == "ether").Select(x => x.Value)];
 
             RefreshElementList();
         }
