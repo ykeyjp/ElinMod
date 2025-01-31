@@ -100,24 +100,6 @@ public class CharaGeneralTab : YKLayout<Chara>
                 chara.RefreshFaithElement();
             });
         }
-        // 専門
-        {
-            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
-            group.HeaderSmall("専門+"._("Expert+")).WithMinWidth(headerWidth);
-            var religions = new List<string> { "None" };
-            religions.AddRange(Element.ListAttackElements.Select(x => x.GetName()));
-            group.Dropdown(religions, (i) =>
-            {
-                if (i == 0)
-                {
-                    chara.SetMainElement(0, 0, false);
-                }
-                else
-                {
-                    chara.SetMainElement(Element.ListAttackElements[i - 1]?.id ?? 0);
-                }
-            }, EClass.sources.religions.rows.FindIndex((j) => j.id == chara.faith.id)).WithWidth(150);
-        }
         {
             // 趣味
             {
@@ -138,20 +120,29 @@ public class CharaGeneralTab : YKLayout<Chara>
                 }, EClass.sources.hobbies.listWorks.FindIndex((j) => j.id == chara._works[0])).WithWidth(150);
             }
         }
-        // カルマ
         if (chara.IsPC)
         {
-            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
-            group.HeaderSmall("カルマ"._("Karma")).WithMinWidth(headerWidth);
-            var num = group.InputText("").WithPlaceholder("加算、減算"._("plus, minus"));
-            group.Button("取得"._("Gain"), () => { EClass.player.ModKarma(num.Num); });
+            // カルマ
+            {
+                var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+                group.HeaderSmall("カルマ"._("Karma")).WithMinWidth(headerWidth);
+                var num = group.InputText("").WithPlaceholder("加算、減算"._("plus, minus"));
+                group.Button("取得"._("Gain"), () => { EClass.player.ModKarma(num.Num); });
+            }
+            // 名声
+            {
+                var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+                group.HeaderSmall("名声"._("Fame")).WithMinWidth(headerWidth);
+                var num = group.InputText("").WithPlaceholder("加算、減算"._("plus, minus"));
+                group.Button("取得"._("Gain"), () => { EClass.player.ModFame(num.Num); });
+            }
         }
-        // 名声
+        // エーテル
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
-            group.HeaderSmall("名声"._("Fame")).WithMinWidth(headerWidth);
+            group.HeaderSmall("エーテル進行度"._("Ether Progression")).WithMinWidth(headerWidth);
             var num = group.InputText("").WithPlaceholder("加算、減算"._("plus, minus"));
-            group.Button("取得"._("Gain"), () => { EClass.player.ModFame(num.Num); });
+            group.Button("取得"._("Gain"), () => { chara.ModCorruption(num.Num); });
         }
         // 貢献
         if (chara.IsPC)
@@ -174,6 +165,49 @@ public class CharaGeneralTab : YKLayout<Chara>
             group.HeaderSmall("フィートP"._("Feat P")).WithMinWidth(headerWidth);
             var num = group.InputText(chara.feat.ToString(), (i) => { chara.feat = i; });
         }
+        // 飢餓
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("空腹度"._("Hunger")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.hunger.GetValue().ToString(), (i) => { chara.hunger.Set(i); });
+        }
+        // 衛生
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("衛生"._("Hygiene")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.hygiene.GetValue().ToString(), (i) => { chara.hygiene.Set(i); });
+        }
+        // 眠気
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("眠気"._("Drowsiness")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.sleepiness.GetValue().ToString(), (i) => { chara.sleepiness.Set(i); });
+        }
+        // トイレ
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("トイレ"._("Bladder")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.bladder.GetValue().ToString(), (i) => { chara.bladder.Set(i); });
+        }
+        // HP
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("HP").WithMinWidth(headerWidth);
+            var num = group.InputText(chara.hp.ToString(), (i) => { chara.hp = i == 0 ? chara.MaxHP : i; });
+        }
+        // マナ
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("マナ"._("Mana")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.mana.GetValue().ToString(), (i) => { chara.mana.Set(i); });
+        }
+        // スタミナ
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("スタミナ"._("Stamina")).WithMinWidth(headerWidth);
+            var num = group.InputText(chara.stamina.GetValue().ToString(), (i) => { chara.stamina.Set(i); });
+        }
+
         if (!chara.IsPC)
         {
             // トレジャー
