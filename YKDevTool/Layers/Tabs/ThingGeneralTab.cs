@@ -85,6 +85,36 @@ public class ThingGeneralTab : YKLayout<Thing>
                 }
             }, c_IDTState).WithWidth(150);
         }
+        // ルーン
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("ルーン"._("Rune")).WithMinWidth(headerWidth);
+            group.Toggle("ルーンで刻印されている"._("Engraved with runes"), thing.isRuneAdded, (b) => { thing.isRuneAdded = b; }).WithWidth(300);
+        }
+        // 複製品
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("複製品"._("Replicas")).WithMinWidth(headerWidth);
+            group.Toggle("複製品"._("It's a replica."), thing.isCopy, (b) => { thing.isCopy = b; }).WithWidth(300);
+        }
+        // 炎耐性
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("炎耐性"._("Fireproof")).WithMinWidth(headerWidth);
+            group.Toggle("炎耐性"._("Fireproof"), thing.isFireproof, (b) => { thing.isFireproof = b; }).WithWidth(300);
+        }
+        // 酸耐性
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("酸耐性"._("Acidproof")).WithMinWidth(headerWidth);
+            group.Toggle("酸耐性"._("Acidproof"), thing.isAcidproof, (b) => { thing.isAcidproof = b; }).WithWidth(300);
+        }
+        // 盗品
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("盗品"._("Stolen")).WithMinWidth(headerWidth);
+            group.Toggle("盗品"._("Stolen"), thing.isStolen, (b) => { thing.isStolen = b; }).WithWidth(300);
+        }
         // 重量
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);

@@ -49,7 +49,7 @@ public class WidgetThingGenerator
             {
                 callback.onClick += delegate (Recipe a, ButtonGrid b)
                 {
-                    var thing = a.Craft(BlessedState.Normal);
+                    var thing = ThingGen.Create(a.source.id, a.idMat);
                     if (thing != null)
                     {
                         thing.ChangeMaterial(material.value == 0 ? a.DefaultMaterial : EClass.sources.materials.rows[material.value - 1], false);
