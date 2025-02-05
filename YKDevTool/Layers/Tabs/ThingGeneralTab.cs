@@ -85,12 +85,6 @@ public class ThingGeneralTab : YKLayout<Thing>
                 }
             }, c_IDTState).WithWidth(150);
         }
-        // ルーン
-        {
-            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
-            group.HeaderSmall("ルーン"._("Rune")).WithMinWidth(headerWidth);
-            group.Toggle("ルーンで刻印されている"._("Engraved with runes"), thing.isRuneAdded, (b) => { thing.isRuneAdded = b; }).WithWidth(300);
-        }
         // 複製品
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
