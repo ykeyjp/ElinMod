@@ -64,7 +64,7 @@ public class CharaGeneralTab : YKLayout<Chara>
                 group.HeaderSmall("職業"._("Job")).WithMinWidth(headerWidth);
                 group.Dropdown(EClass.sources.jobs.rows.Select(x => x.GetName()).ToList(), (i) =>
                 {
-                    chara.ChangeRace(EClass.sources.jobs.rows[i].id);
+                    chara.ChangeJob(EClass.sources.jobs.rows[i].id);
                 }, EClass.sources.jobs.rows.FindIndex((r) => r.id == chara.job.id)).WithWidth(150);
             }
         }
