@@ -39,7 +39,7 @@ public class BranchTab : YKLayout<object>
                 var group = hgroup.Horizontal();
                 group.HeaderSmall("経験値"._("Exp."));
                 var input = group.InputText("");
-                group.Button("取得"._("Gian"), () =>
+                group.Button("取得"._("Gain"), () =>
                 {
                     _branch.ModExp(input.Num);
                     if (lvInput != null) lvInput.Num = _branch.lv;
