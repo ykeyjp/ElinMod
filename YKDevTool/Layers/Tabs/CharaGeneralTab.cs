@@ -86,6 +86,23 @@ public class CharaGeneralTab : YKLayout<Chara>
                 }, EClass.sources.tactics.rows.FindIndex((j) => j.id == chara.tactics.source.id)).WithWidth(150);
             }
         }
+        // 主属性
+        {
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("主属性"._("Main Element")).WithMinWidth(headerWidth);
+            group.Dropdown(["None", .. Element.ListAttackElements.Select(x => x.GetName()).ToList()], (i) =>
+            {
+                if (i == 0)
+                {
+                    chara.SetMainElement(0, 0, false);
+                }
+                else
+                {
+                    chara.SetMainElement(Element.ListAttackElements[i - 1]?.id ?? 0);
+                }
+
+            }, Element.ListAttackElements.FindIndex((j) => j.id == chara.MainElement.source.id) + 1).WithWidth(150);
+        }
         // 信仰
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
