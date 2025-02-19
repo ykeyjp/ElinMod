@@ -25,7 +25,6 @@ public abstract class YKLayer<T> : ELayer
         var viewport = (RectTransform)scroll_rect.Find("Viewport");
 
         var scroll_content = (RectTransform)viewport.Find("Content");
-        scroll_content.DestroyChildren();
         scroll_content.DestroyAllChildren();
         var scroll_layout = scroll_content.gameObject.GetComponent<VerticalLayoutGroup>();
         scroll_layout.childControlHeight = true;

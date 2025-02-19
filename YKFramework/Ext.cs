@@ -96,7 +96,6 @@ public static class Ext
         window.RectTransform.position = setting.bound.position;
 
         var content = window.Find("Content View");
-        content.DestroyChildren();
         content.DestroyAllChildren();
 
         return window;

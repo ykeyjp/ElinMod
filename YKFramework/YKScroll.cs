@@ -20,7 +20,6 @@ public class YKScroll : YKLayout
         var viewport = (RectTransform)rect.Find("Viewport");
 
         var content = (RectTransform)viewport.Find("Content");
-        content.DestroyChildren();
         content.DestroyAllChildren();
         _contentTransform = content;
 
