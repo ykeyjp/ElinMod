@@ -21,12 +21,22 @@ public static class YK
 
     public static T GetResource<T>(string hint) where T : Component
     {
+
         if (!UIObjects.TryGetValue(typeof(T), out UnityEngine.Object obj))
         {
             obj = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault((T x) => x.name == hint);
             UIObjects.Add(typeof(T), obj);
         }
-        return (T)UnityEngine.Object.Instantiate(obj);
+        try
+        {
+            return (T)UnityEngine.Object.Instantiate(obj);
+        }
+        catch
+        {
+            Debug.Log("[YKF] not instantiate resource: " + hint);
+        }
+
+        return null;
     }
 
     public static T Create<T>(Transform? parent = null) where T : MonoBehaviour
