@@ -26,17 +26,13 @@ public static class YK
         {
             obj = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault((T x) => x.name == hint);
             UIObjects.Add(typeof(T), obj);
-        }
-        try
-        {
-            return (T)UnityEngine.Object.Instantiate(obj);
-        }
-        catch
-        {
-            Debug.Log("[YKF] not instantiate resource: " + hint);
-        }
 
-        return null;
+            if (obj == null)
+            {
+                Debug.Log("[YKF] not instantiate resource: " + hint);
+            }
+        }
+        return (T)UnityEngine.Object.Instantiate(obj);
     }
 
     public static T Create<T>(Transform? parent = null) where T : MonoBehaviour

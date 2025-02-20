@@ -13,6 +13,10 @@ public abstract class YKLayer<T> : ELayer
         var rect = parent.gameObject.GetComponent<RectTransform>();
 
         // scroll
+        if (!YK.UIObjects.ContainsKey(typeof(ScrollRect)))
+        {
+            Resources.Load("UI/Layer/LayerAnnounce");
+        }
         var scroll = YK.GetResource<ScrollRect>("Scrollview parchment with Header");
         scroll.gameObject.name = id;
         var scroll_rect = scroll.Rect();
