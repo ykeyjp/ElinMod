@@ -1,4 +1,3 @@
-using System.Reflection;
 using UnityEngine;
 
 namespace YKF;
@@ -27,7 +26,12 @@ public static class YK
             obj = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault((T x) => x.name == hint);
             UIObjects.Add(typeof(T), obj);
         }
-        return (T)UnityEngine.Object.Instantiate(obj);
+        var res = (T)UnityEngine.Object.Instantiate(obj);
+        if (res == null)
+        {
+            Debug.Log("[YKF] not instantiate resource: " + hint);
+        }
+        return res!;
     }
 
     public static T Create<T>(Transform? parent = null) where T : MonoBehaviour
