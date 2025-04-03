@@ -20,6 +20,39 @@ public class ThingGeneralTab : YKLayout<Thing>
                 thing.ChangeMaterial(EClass.sources.materials.rows[i].id);
             }, EClass.sources.materials.rows.FindIndex(m => m.id == thing.material.id)).WithWidth(150);
         }
+        // 本（能力）
+        if (thing.trait is TraitSpellbookRandom traitBook)
+        {
+            var abilityList = EClass.sources.elements.rows.Where((e) => e.category == "ability" && e.alias.Last() != '_').ToList();
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("能力"._("Ability")).WithMinWidth(headerWidth);
+            group.Dropdown(abilityList.Select(x => x.GetName()).ToList(), (i) =>
+            {
+                TraitSpellbook.Create(thing, abilityList[i].id);
+            }, abilityList.ToList().FindIndex(m => m.id == traitBook.source.id)).WithWidth(150);
+        }
+        // スクロール（能力）
+        if (thing.trait is TraitScrollRandom traitScroll)
+        {
+            var abilityList = EClass.sources.elements.rows.Where((e) => e.category == "ability" && e.alias.Last() != '_').ToList();
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("能力"._("Ability")).WithMinWidth(headerWidth);
+            group.Dropdown(abilityList.Select(x => x.GetName()).ToList(), (i) =>
+            {
+                TraitSpellbook.Create(thing, abilityList[i].id);
+            }, abilityList.ToList().FindIndex(m => m.id == traitScroll.source.id)).WithWidth(150);
+        }
+        // ポーション（能力）
+        if (thing.trait is TraitPotionRandom traitPotion)
+        {
+            var abilityList = EClass.sources.elements.rows.Where((e) => e.category == "ability" && e.alias.Last() != '_').ToList();
+            var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
+            group.HeaderSmall("能力"._("Ability")).WithMinWidth(headerWidth);
+            group.Dropdown(abilityList.Select(x => x.GetName()).ToList(), (i) =>
+            {
+                TraitPotion.Create(thing, abilityList[i].id);
+            }, abilityList.ToList().FindIndex(m => m.id == traitPotion.source.id)).WithWidth(150);
+        }
         // ランク
         {
             var qualityText = Lang.GetList("quality");
