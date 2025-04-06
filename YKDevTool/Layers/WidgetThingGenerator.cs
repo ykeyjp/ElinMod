@@ -47,7 +47,7 @@ public class WidgetThingGenerator
         {
             if (__instance.list.callbacks is UIList.Callback<Recipe, ButtonGrid> callback)
             {
-                callback.onClick += delegate (Recipe a, ButtonGrid b)
+                callback.onClick = delegate (Recipe a, ButtonGrid b)
                 {
                     var thing = ThingGen.Create(a.source.id, a.idMat);
                     if (thing != null)
