@@ -4,7 +4,7 @@ using YKF;
 
 namespace YKDev.Layers.Tabs;
 
-public class CharaSpellTab : YKLayout<Chara>
+public class CharaAbilityTab : YKLayout<Chara>
 {
     public override void OnLayout()
     {
@@ -12,18 +12,17 @@ public class CharaSpellTab : YKLayout<Chara>
         var headerWidth = 120;
         Header(chara.GetName(NameStyle.Full));
 
-        var spellList = EClass.sources.elements.rows.Where((e) => { return (e.group == "SPELL") && e.alias.Last() != '_'; }).ToArray();
+        var abilityList = EClass.sources.elements.rows.Where((e) => { return (e.group == "ABILITY") && e.alias.Last() != '_'; }).ToArray();
 
         // 呪文
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
-            group.HeaderSmall("魔法"._("Spell")).WithMinWidth(headerWidth);
-            var dropdown = group.Dropdown(spellList.Select(x => x.GetName()).ToList()).WithWidth(150);
+            group.HeaderSmall("アビリティ"._("Ability")).WithMinWidth(headerWidth);
+            var dropdown = group.Dropdown(abilityList.Select(x => x.GetName()).ToList()).WithWidth(150);
             var baseInput = group.InputText("").WithPlaceholder("ベース"._("Base"));
-            var potentialInput = group.InputText("").WithPlaceholder("回数"._("Count"));
             group.Button("取得"._("Gain"), () =>
             {
-                GainElement(chara, spellList[dropdown.value], baseInput.Num, potentialInput.Num);
+                GainElement(chara, abilityList[dropdown.value], baseInput.Num, 0);
                 RefreshElementList();
             });
         }
@@ -31,21 +30,21 @@ public class CharaSpellTab : YKLayout<Chara>
         {
             var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
             group.HeaderSmall("経験値"._("Exp")).WithMinWidth(headerWidth);
-            var dropdown = group.Dropdown(spellList.Select(x => x.GetName()).ToList()).WithWidth(150);
+            var dropdown = group.Dropdown(abilityList.Select(x => x.GetName()).ToList()).WithWidth(150);
             var expInput = group.InputText("").WithPlaceholder("加算、減算"._("plus, minus"));
             group.Button("取得"._("Gain"), () =>
             {
-                chara.ModExp(spellList[dropdown.value].id, expInput.Num);
+                chara.ModExp(abilityList[dropdown.value].id, expInput.Num);
                 RefreshElementList();
             });
         }
 
         // 現在値
         {
-            Header("魔法"._("Spell"));
-            _spellElementList = Create<ElementList>();
-            _spellElementList.Container = chara.elements;
-            _spellElementList.OnList = (m) => chara.elements.dict.Where(e => e.Value is Spell).Select(x => x.Value).ToList();
+            Header("アビリティ"._("Ability"));
+            _abilityElementList = Create<ElementSingleList>();
+            _abilityElementList.Container = chara.elements;
+            _abilityElementList.OnList = (m) => chara.elements.dict.Where(e => e.Value is Ability && e.Value is not Spell).Select(x => x.Value).ToList();
         }
 
         RefreshElementList();
@@ -68,10 +67,10 @@ public class CharaSpellTab : YKLayout<Chara>
         }
     }
 
-    private ElementList? _spellElementList;
+    private ElementSingleList? _abilityElementList;
 
     private void RefreshElementList()
     {
-        _spellElementList?.Refresh();
+        _abilityElementList?.Refresh();
     }
 }
