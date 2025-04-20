@@ -17,6 +17,7 @@ namespace YkeySearchExtension.Patches
             var rect = __instance.gameObject.GetComponent<RectTransform>();
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 400);
             rect.Find("Search Box").Find("ButtonGeneral").Rect().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, 8, 30);
+            rect.Find("Search Box").Find("ButtonGeneral (1)").Rect().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, 30, 30);
 
             var content = new GameObject(typeof(UIContent).Name, new Type[]
             {
@@ -56,8 +57,9 @@ namespace YkeySearchExtension.Patches
                 __instance.extra.lastSearch = s;
             }
             s = s.ToLower();
-            __instance.buttonClear.SetActive(__instance.field.text != "");
-            if (s == __instance.lastSearch)
+            __instance.buttonClear?.SetActive(__instance.field.text != "");
+            __instance.buttonRefresh?.SetActive(__instance.field.text != "");
+            if (s == __instance.lastSearch || s.Length == 0)
             {
                 return false;
             }
