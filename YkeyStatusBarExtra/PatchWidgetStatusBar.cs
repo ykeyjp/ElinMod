@@ -27,6 +27,13 @@ public class PatchWidgetStatusBar
             RestoreExtra(__instance);
             __instance.Build();
         });
+        uicontextMenu.AddToggle("elec", extra != null && extra.electricity, delegate (bool a)
+        {
+            var extra = ReplaceExtra(__instance);
+            extra.electricity = a;
+            RestoreExtra(__instance);
+            __instance.Build();
+        });
     }
 
     [HarmonyPostfix, HarmonyPatch(typeof(WidgetStatsBar), nameof(WidgetStatsBar.Build))]
@@ -91,6 +98,36 @@ public class PatchWidgetStatusBar
                 delegate
                 {
                     return EClass.Branch != null;
+                });
+        }
+        if (extra.electricity)
+        {
+            __instance.Add(
+                null,
+                "elec",
+                SpriteSheet.Get("icon_sp"),
+                () =>
+                {
+                    if (EMono._zone == null) return "";
+                    var z = EMono._zone;
+                    var electricity = z.GetElectricity(cost: true);
+                    var electricity2 = z.GetElectricity();
+                    return "" + (electricity.ToString() ?? "?") + "(" + (electricity2.ToString() ?? "?") + ")";
+                },
+                delegate
+                {
+                    if (EMono._zone == null) return FontColor.Default;
+                    var z = EMono._zone;
+                    var max = z.GetElectricity();
+                    if (max <= 0) return FontColor.Bad;
+                    var rate = z.GetElectricity(cost: true) / max;
+                    if (rate < 0.9) { return FontColor.Default; }
+                    if (rate >= 1) { return FontColor.Bad; }
+                    return FontColor.Warning;
+                },
+                delegate
+                {
+                    return EMono._zone != null;
                 });
         }
     }
@@ -162,4 +199,5 @@ public class YKWidgetStatusBarExtra : WidgetStatsBar.Extra
 {
     public bool population;
     public bool pasture;
+    public bool electricity;
 }
