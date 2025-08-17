@@ -16,7 +16,7 @@ public class CharaGeneralTab : YKLayout<Chara>
             {
                 var group = Horizontal().WithFitMode(ContentSizeFitter.FitMode.PreferredSize).WithPivot(0f, 0.5f);
                 group.HeaderSmall("年齢"._("Age")).WithMinWidth(headerWidth);
-                group.InputText(chara.bio.age.ToString(), (i) => { chara.bio.age = i; });
+                group.InputText(chara.bio.TextAge(chara), (i) => { chara.bio.SetAge(chara, i); });
             }
             // 誕生日
             {
