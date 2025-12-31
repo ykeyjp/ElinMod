@@ -13,7 +13,10 @@ namespace YkeySearchExtension.Patches
         [HarmonyPostfix, HarmonyPatch(typeof(WidgetSearch), nameof(WidgetSearch.OnActivate))]
         public static void WidgetSearch_OnActivate_Postfix(WidgetSearch __instance)
         {
-
+            if (__instance == null)
+            {
+                return;
+            }
             var rect = __instance.gameObject.GetComponent<RectTransform>();
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 400);
             rect.Find("Search Box").Find("ButtonGeneral").Rect().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, 8, 30);
@@ -52,6 +55,10 @@ namespace YkeySearchExtension.Patches
         [HarmonyPrefix, HarmonyPatch(typeof(WidgetSearch), nameof(WidgetSearch.Search))]
         public static bool WidgetSearch_Search_Prefix(WidgetSearch __instance, string s)
         {
+            if (__instance == null)
+            {
+                return false;
+            }
             if (!s.IsEmpty())
             {
                 __instance.extra.lastSearch = s;
@@ -75,7 +82,7 @@ namespace YkeySearchExtension.Patches
                 __instance.cards = ext.foundCard;
                 __instance.RefreshList();
             }
-            __instance.cgResult.alpha = ((__instance.list.ItemCount > 0) ? 1f : 0f);
+            __instance.cgResult.alpha = (__instance.list.ItemCount > 0) ? 1f : 0f;
             __instance.lastSearch = s;
 
             return false;
